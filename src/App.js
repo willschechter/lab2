@@ -14,14 +14,14 @@ export default class App extends Component {
       ]
     };
   }
-  updateNewTextValue = event => {
+   updateNewTextValue = event => {
     this.setState({ newItemText: event.target.value });
   };
   
   createNewTodo = () => {
     if (
       !this.state.todoItems.find(item => item.action === this.state.newItemText)
-    ){
+    ) {
       this.setState({
         todoItems: [
           ... this.state.todoItems,
@@ -39,7 +39,7 @@ export default class App extends Component {
       todoItems: this.state.todoItems.map(item =>
         item.action === todo.action ? { ... item, done: !item.done } : item
       )
-    });
+      });
   
   todoTableRows = () =>
     this.state.todoItems.map(item => (
@@ -49,7 +49,7 @@ export default class App extends Component {
             <input
               type="checkbox"
               checked={item.done}
-              onChanged={() => this.toggleToDo(item)}
+              onChange={() => this.toggleToDo(item)}
               />
           </td>
         </tr>
@@ -63,10 +63,11 @@ export default class App extends Component {
         {this.state.userName}'s To Do List
         </h4>
         <div className= "container-fluid">
-          <div className="my=1">
+          <div className="my-1">
             <input
               className = "form-control"
-              value={this.updateNewTextValue}
+              value={this.state.newItemText}
+              onChange={this.updateNewTextValue}
             />
         <button className="btn btn-primary mt-1" onClick={this.createNewTodo}>
           Add 
